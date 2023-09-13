@@ -4,6 +4,8 @@ import Main from "../layout/Main";
 import Contract from "../pages/Contract/Contract";
 import Services from "../pages/Services/Services";
 import AddService from "../pages/AddService/AddService";
+import About from "../pages/About/About";
+import Service from "../pages/Service/Service";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +22,14 @@ export const router = createBrowserRouter([
                 loader: async () => fetch("http://localhost:5000/services")
             },
             {
+                path: "/service/:id", element: <Service></Service>,
+                loader: async ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+            },
+            {
                 path: "/addservice", element: <AddService></AddService>
+            },
+            {
+                path: "/about", element: <About></About>
             },
         ]
     }

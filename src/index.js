@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import UserContext from './context/UserContext/UserContext';
+import { PhotoProvider } from 'react-photo-view';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

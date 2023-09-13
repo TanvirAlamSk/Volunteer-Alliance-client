@@ -1,19 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Service = ({ service }) => {
-    const { image, description } = service
+const ServiceCard = ({ service }) => {
+    const { _id, image, description } = service
     return (
         <div className="card card-compact bg-base-100 shadow-xl text-black text-left">
-            <figure><img src={image} alt="Shoes" /></figure>
+            <figure ><img src={image} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{service.service}</h2>
                 <p>{description.split(" ").slice(0, 20).join(" ")}</p>
                 <div className="card-actions ">
-                    <button className="btn btn-outline btn-success font-bold">See Details</button>
+                    <Link to={`/service/${_id}`}>
+                        <button className="btn btn-outline btn-success font-bold">See Details</button>
+                    </Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Service;
+export default ServiceCard;

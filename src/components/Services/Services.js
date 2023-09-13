@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Services = () => {
     const [names, setNames] = useState([]);
@@ -43,9 +43,9 @@ const Services = () => {
                 <div className='md:basis-2/3 flex flex-col md:flex-row '>
                     <div className='md:basis-1/2 '>
                         {service ?
-                            <img className='h-96' src={service.image} alt="" srcset="" />
+                            <img className='h-96' src={service.image} alt="" srcSet="" />
                             :
-                            <img className='h-96' src={names[0]?.image} alt="" srcset="" />
+                            <img className='h-96' src={names[0]?.image} alt="" srcSet="" />
                         }
                     </div>
                     <div className='md:basis-1/2 pt-5 text-left'>
@@ -64,7 +64,9 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-            <button className='btn bg-teal-500 text-white mt-20 hover:bg-teal-600'>View all services</button>
+            <Link to="/services">
+                <button className='btn bg-teal-500 text-white mt-20 hover:bg-teal-600'>View all services</button>
+            </Link>
         </div>
     );
 };

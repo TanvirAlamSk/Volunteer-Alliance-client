@@ -1,12 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { } from 'react';
+import { Link } from 'react-router-dom';
 
 const AddService = () => {
+    const handelProduct = (event) => {
+        event.preventDefault()
+        const service = event.target.name.value
+        const image = event.target.imglink.value
+        const description = event.target.description.value
+        const newService = { service, image, description }
+
+        fetch("http://localhost:5000/services", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newService)
+
+        })
+            .then((responce) => responce.json())
+            .then((data) => {
+                if (data.acknowledged) {
+
+                }
+            })
+    }
     return (
         <div className="px-2  mb-10">
             <div className="flex flex-no-wrap items-start">
                 <div className="w-full ">
                     <div className=" px-2">
-                        <div className="bg-white rounded shadow mt-7 ">
+                        <form onSubmit={handelProduct} className="bg-white rounded shadow mt-7 ">
                             <div className=" px-7">
                                 <p className="text-xl font-semibold leading-tight text-gray-800">
                                     Add New Product
@@ -17,7 +40,7 @@ const AddService = () => {
                                         <p className="text-base font-medium leading-none text-gray-800">
                                             Service Name
                                         </p>
-                                        <input className="w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-gray-50" />
+                                        <input name='name' className="w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-gray-50" />
                                         <p className="mt-3 text-xs leading-3 text-gray-600">
                                             Set a simple and precise service name
                                         </p>
@@ -26,7 +49,7 @@ const AddService = () => {
                                         <p className="text-base font-medium leading-none text-gray-800">
                                             Service Image Link
                                         </p>
-                                        <input className="w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-gray-50" />
+                                        <input name="imglink" className="w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-gray-50" />
                                         <p className="mt-3 text-xs leading-[15px] text-gray-600">
                                             Set photo that are related to the Service
                                         </p>
@@ -56,10 +79,10 @@ const AddService = () => {
                                     Product Description
                                 </p>
                                 <div className="mt-10 border border-gray-300 rounded">
-                                    <textarea
+                                    <textarea name="description"
                                         className="resize-none w-full h-[170px] px-4 py-4 text-base outline-none text-slate-600"
                                         placeholder="Start typing here ..."
-                                        defaultValue={" "}
+
                                     />
                                 </div>
                             </div>
@@ -67,15 +90,17 @@ const AddService = () => {
                                 Enter service description for better understanding
                             </p>
                             <hr className="h-[1px] bg-gray-100 " />
-                            <div className="flex flex-col flex-wrap items-center justify-center w-full px-7 lg:flex-row lg:justify-end md:justify-end gap-x-4 gap-y-4 p-5">
-                                <button className="bg-white border-indigo-700 rounded hover:bg-gray-50 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-indigo-700 border lg:max-w-[95px]  w-full ">
-                                    Cancel
-                                </button>
-                                <button className="bg-indigo-700 rounded hover:bg-indigo-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full ">
+                            <div className="flex flex-col flex-wrap items-center justify-center w-full px-7 lg:flex-row md:justify-between gap-x-4 gap-y-4 p-5">
+                                <Link to="/services">
+                                    <button className="bg-white border-indigo-700 rounded hover:bg-gray-50 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-indigo-700 border lg:max-w-[95px]  w-full ">
+                                        Cancel
+                                    </button>
+                                </Link>
+                                <button type='submit' className="bg-indigo-700 rounded hover:bg-indigo-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full ">
                                     Upload
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
